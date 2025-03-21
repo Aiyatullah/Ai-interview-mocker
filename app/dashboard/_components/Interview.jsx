@@ -1,34 +1,43 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { db } from '@utils/firebase'; // Firebase import
-import { collection, getDocs } from 'firebase/firestore';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import { db } from "@utils/firebase"; // Firebase import
+import { collection, getDocs } from "firebase/firestore";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs"; // Clerk hook to get the user
 
 function Interview() {
+  const { user } = useUser(); // Get the logged-in user
   const [interviews, setInterviews] = useState([]);
 
   useEffect(() => {
-    // Fetch interviews from Firestore
+    if (!user) return; // Ensure user is logged in
+
     const fetchInterviews = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'mockinterviews'));
-        
+        const querySnapshot = await getDocs(collection(db, "mockinterviews"));
+
         if (!querySnapshot.empty) {
-          const interviewData = querySnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
+          const userEmail = user.primaryEmailAddress.emailAddress; // Get logged-in user's email
+
+          // Filter interviews that belong to the logged-in user
+          const interviewData = querySnapshot.docs
+            .map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }))
+            .filter((interview) => interview.createdby === userEmail);
+
           setInterviews(interviewData);
         } else {
-          console.log('No interviews found!');
+          console.log("No interviews found!");
         }
       } catch (error) {
-        console.error('Error fetching interviews:', error);
+        console.error("Error fetching interviews:", error);
       }
     };
 
     fetchInterviews();
-  }, []);
+  }, [user]);
 
   return (
     <div className="mt-4">

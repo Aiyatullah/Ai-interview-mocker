@@ -62,13 +62,7 @@ export default function QuestionSection({
         </div>
       )}
 
-      {/* Lightbulb Hint - Moved Above Navigation Buttons */}
-      <div className="flex items-center m-20 bg-yellow-100 p-3 rounded-md mt-6">
-        <Lightbulb className="h-6 w-6 text-yellow-500 mr-2" />
-        <p className="text-gray-700">
-          Please reset the answer after each question or repeating the question. Good luck!
-        </p>
-      </div>
+      
       {/* Navigation Buttons - Bottom Right */}
       <div className="absolute bottom-4 right-4 flex gap-4 items-center">
         {/* Previous Button */}

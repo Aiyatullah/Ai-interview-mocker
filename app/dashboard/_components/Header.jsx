@@ -10,7 +10,19 @@ function Header() {
 
   return (
     <div className='flex p-4 items-center justify-between bg-secondary shadow-sm'>
-        <Image src={'/logo.svg'} width={160} height={100} alt="logo"/>
+         <div className="flex items-center gap-2">
+                <Image 
+                    src={'/logo69.png'} 
+                    width={80}  
+                    height={80}  
+                    alt="logo"
+                    className="object-contain"
+                />
+                <span className="text-xl font-semibold italic text-gray-700 tracking-wide">
+    Pompous AI Interview Mocker
+</span>
+
+            </div>
         <ul className='hidden md:flex gap-6'>
             <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
             ${path === '/dashboard' ? 'text-blue-500 font-bold' : 'text-black'}`}>
@@ -22,7 +34,7 @@ function Header() {
             </li>
             <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
             ${path === '/dashboard/how' ? 'text-blue-500 font-bold' : 'text-black'}`}>
-                <Link href="/dashboard/how">How it works</Link>  {/* Link to How it works */}
+                <Link href="/dashboard/how">About us</Link>  {/* Link to How it works */}
             </li>
         </ul>
         <UserButton/>

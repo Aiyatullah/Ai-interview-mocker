@@ -7,7 +7,7 @@ import { chatSession } from '@utils/GeminiAi';
 import { db } from '@utils/firebase';
 import { useParams } from 'next/navigation';
 import { collection, query, where, getDocs, addDoc, setDoc, doc } from 'firebase/firestore';
-import { WebcamIcon } from 'lucide-react';
+import { WebcamIcon, Lightbulb } from 'lucide-react';
 
 export default function RecordAnswerSection({ mockInterviewQuestions, activeQuestionIndex }) {
   const { interviewId } = useParams();
@@ -100,8 +100,15 @@ export default function RecordAnswerSection({ mockInterviewQuestions, activeQues
 
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-md w-full max-w-lg mx-auto">
+      {/* Lightbulb Hint - Moved Above Navigation Buttons */}
+      <div className="flex items-center  bg-yellow-100 p-3 rounded-md mt-6">
+        <Lightbulb className="h-6 w-6 text-yellow-500 " />
+        <p className="text-gray-700 font-semibold italic">
+          Please reset the answer after each question or repeating the question. Good luck!
+        </p>
+      </div>
       {/* Webcam or Placeholder Icon */}
-      <div className="relative w-full flex items-center justify-center">
+      <div className="relative w-full flex items-center justify-center p-2">
         {isWebcamOpen ? (
           <Webcam
             mirrored={true}
