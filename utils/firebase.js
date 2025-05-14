@@ -8,7 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDu5gLyCa0NAuNHcQ-z10PvZb5G7AmVoYs",
   authDomain: "ai-interview-mocker-a9d05.firebaseapp.com",
   projectId: "ai-interview-mocker-a9d05",
-  storageBucket: "ai-interview-mocker-a9d05.appspot.com", // ✅ Fixed storageBucket typo
+  storageBucket: "ai-interview-mocker-a9d05.firebasestorage.app",
   messagingSenderId: "946667289499",
   appId: "1:946667289499:web:32291c6801ec8ad9327f3e",
   measurementId: "G-XHGGM1DD3F"
